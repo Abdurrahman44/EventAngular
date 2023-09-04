@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {EventService} from "./event.service";
+import {EventService} from "../views/theme/event.service";
 
 @Component({
-  templateUrl: 'typography.component.html',
+  selector: 'app-event',
+  templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
-export class TypographyComponent {
+export class EventComponent {
   events: any[] = [];
   users: any[] = [];
   eventForm: FormGroup;
@@ -25,7 +26,6 @@ export class TypographyComponent {
       lastName: ['', [Validators.required]],
     });
   }
-
 //burada kişiler paneli açılmak amacıyla kullanılıyor olacaktır.
   isAddUserPanelOpen: boolean = false;
   openAddUserPanel() {
@@ -54,15 +54,10 @@ export class TypographyComponent {
       this.loadEvents();
     });
   }
-  postEvent(): void  {
+  postEvent(): void {
     if (this.eventForm.valid) {
       const eventData = this.eventForm.value;
-      const createRequestEvent = {
-        eventName: eventData.eventName,
-        date: eventData.date,
-        explain: eventData.explain
-      };
-      this.eventService.postEvent(createRequestEvent).subscribe(() => {
+      this.eventService.postEvent(eventData).subscribe(() => {
         this.loadEvents(); // Yeniden yüklemek yerine events dizisine doğrudan eklemek daha verimli olabilir.
         this.eventForm.reset();
       });
@@ -86,4 +81,5 @@ export class TypographyComponent {
         }
     );
   }
+
 }

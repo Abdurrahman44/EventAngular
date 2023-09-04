@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Management App</title>
+    <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+    />
+</head>
+<body>
+<div style="display: flex; flex-direction: column">
+    <div>
+        <div *ngIf="isAddUserPanelOpen" class="userbar">
+            <div class="dynamic-list">
+                <span style="margin-left: 100px">Users</span>
+                <form action="#">
+                    <div *ngIf="users.length > 0">
+                        <ul style="list-style: none">
+                            <li class="descipt" *ngFor="let user of users; let i = index">
+                                <div style="display: flex; flex-direction: row">
+                      <span
+                              style="padding-top: 10px; color: rgb(0, 0, 0)"
+                              [attr.maxlength]="30"
+                      >{{ user.name }}+{{ user.lastName }}</span
+                      >
+                                    <input type="checkbox" id="user" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left: 150px; display: inline-block">
+                        <input type="submit" class="submit" value="Gönder" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="add-event-card" style="margin-left: 850px" [@cardAnimation]>
+            <input
+                    type="text"
+                    class="input"
+                    formControlName="date"
+                    placeholder="EventName"
+                    style="font-weight: bold; margin-left: 100px"
+            /><br />
+            <textarea
+                    type="text"
+                    style="
+              border: none;
+              outline: none;
+              padding: 5px;
+              margin: 5px 5px 5px 65px;
+            "
+                    rows="15"
+                    cols="30"
+                    formControlName="explain"
+                    placeholder="Event Description"
+            ></textarea
+            ><br />
+            <input
+                    type="date"
+                    class="input"
+                    formControlName="date"
+                    placeholder="Event Date"
+            />
+            <br />
+            <div style="margin-left: 60px; margin-top: 20px">
+                <button
+                        class="submit"
+                        style="
+                color: white;
+                background-color: rgb(241, 26, 10);
+                margin-left: 30px;
+              "
+                >
+                    Cancel
+                </button>
+                <button
+                        class="submit"
+                        style="color: white; background-color: rgb(51, 17, 243)"
+                        (click)="postEvent()"
+                >
+                    Add Event
+                </button>
+            </div>
+        </div>
+
+        <div
+                style="
+            background-color: rgb(107, 142, 247);
+            border: none;
+            border-radius: 40px;
+          "
+        >
+            <h3 style="margin-left: 50%">Event List</h3>
+        </div>
+
+        <div *ngIf="events.length > 0">
+            <ul style="display: flex; list-style: none">
+                <li
+                        class="descipt"
+                        (mouseenter)="event.showDetails = true"
+                        (mouseleave)="event.showDetails = false"
+                        style="margin-left: 30px; list-style: none"
+                        *ngFor="let event of events; let i = index"
+                >
+              <span class="title" [attr.maxlength]="100">{{
+                  event.eventName
+                  }}</span>
+                    <br />
+                    <div>
+                        <div *ngIf="event.showDetails">
+                            <strong>Date:</strong> <br />
+                            {{ event.date | date : "medium" }}
+                            <strong>Description:</strong> <br />
+                            {{ event.explain }} <br />
+
+                            <div style="display: flex; margin-top: 70px">
+                                <button (click)="openAddUserPanel()" class="submit">
+                                    AddUser
+                                </button>
+                                <button class="submit" (click)="deleteEvent(event.id)">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!--Buraya yaklaşan etkinlikler eklenecek-->
+    </div>
+</div>
+</body>
+</html>

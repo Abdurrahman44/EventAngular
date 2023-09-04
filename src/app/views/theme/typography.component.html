@@ -1,150 +1,145 @@
-<div class="fade-in">
-  <c-card class="mb-4">
-    <c-card-header>
-      Headings
-    </c-card-header>
-    <c-card-body>
-      <p>Documentation and examples for Bootstrap typography, including global settings, headings, body text, lists, and more.</p>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Heading</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <p><code class="c-highlighter-rouge">&lt;h1&gt;&lt;/h1&gt;</code></p>
-            </td>
-            <td><h1>h1. Bootstrap heading</h1></td>
-          </tr>
-          <tr>
-            <td>
-              <p><code class="c-highlighter-rouge">&lt;h2&gt;&lt;/h2&gt;</code></p>
-            </td>
-            <td><h2>h2. Bootstrap heading</h2></td>
-          </tr>
-          <tr>
-            <td>
-              <p><code class="c-highlighter-rouge">&lt;h3&gt;&lt;/h3&gt;</code></p>
-            </td>
-            <td><h3>h3. Bootstrap heading</h3></td>
-          </tr>
-          <tr>
-            <td>
-              <p><code class="c-highlighter-rouge">&lt;h4&gt;&lt;/h4&gt;</code></p>
-            </td>
-            <td><h4>h4. Bootstrap heading</h4></td>
-          </tr>
-          <tr>
-            <td>
-              <p><code class="c-highlighter-rouge">&lt;h5&gt;&lt;/h5&gt;</code></p>
-            </td>
-            <td><h5>h5. Bootstrap heading</h5></td>
-          </tr>
-          <tr>
-            <td>
-              <p><code class="c-highlighter-rouge">&lt;h6&gt;&lt;/h6&gt;</code></p>
-            </td>
-            <td><h6>h6. Bootstrap heading</h6></td>
-          </tr>
-        </tbody>
-      </table>
-    </c-card-body>
-  </c-card>
-  <c-card class="mb-4">
-    <c-card-header>
-      Headings
-    </c-card-header>
-    <c-card-body>
-      <p><code class="c-highlighter-rouge">.h1</code> through <code class="c-highlighter-rouge">.h6</code> classes are also available, for when you want to match the font styling of a heading but cannot use the associated HTML element.</p>
-      <div class="bd-example">
-        <p class="h1">h1. Bootstrap heading</p>
-        <p class="h2">h2. Bootstrap heading</p>
-        <p class="h3">h3. Bootstrap heading</p>
-        <p class="h4">h4. Bootstrap heading</p>
-        <p class="h5">h5. Bootstrap heading</p>
-        <p class="h6">h6. Bootstrap heading</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Event Management App</title>
+  <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+<div style="display: flex; flex-direction: column">
+  <div>
+    <div *ngIf="isAddUserPanelOpen" class="userbar">
+      <div class="dynamic-list">
+        <span style="margin-left: 100px">Users</span>
+        <form [formGroup]="usersForm">
+          <div *ngIf="users.length > 0">
+            <ul style="list-style: none">
+              <li class="descipt" *ngFor="let user of users; let i = index">
+                <div style="display: flex; flex-direction: row">
+                      <span
+                        style="padding-top: 10px; color: rgb(0, 0, 0)"
+                        [attr.maxlength]="30"
+                      >{{ user.name }}+{{ user.lastName }}</span
+                      >
+                  <input type="checkbox" id="user"/>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div style="margin-left: 150px; display: inline-block">
+            <input type="submit" class="submit" value="Gönder"/>
+          </div>
+        </form>
       </div>
-    </c-card-body>
-  </c-card>
-  <c-card class="mb-4" id="someAnchorage">
-    <c-card-header>
-      Display headings
-    </c-card-header>
-    <c-card-body>
-      <p>Traditional heading elements are designed to work best in the meat of your page content. When you need a heading to stand out, consider using a <strong>display heading</strong>—a larger, slightly more opinionated heading style.</p>
-      <div class="bd-example bd-example-type">
-        <table class="table">
-          <tbody>
-            <tr>
-              <td><span class="display-1">Display 1</span></td>
-            </tr>
-            <tr>
-              <td><span class="display-2">Display 2</span></td>
-            </tr>
-            <tr>
-              <td><span class="display-3">Display 3</span></td>
-            </tr>
-            <tr>
-              <td><span class="display-4">Display 4</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </c-card-body>
-  </c-card>
-  <c-card class="mb-4">
-    <c-card-header>
-      Inline text elements
-    </c-card-header>
-    <c-card-body>
-      <p>Traditional heading elements are designed to work best in the meat of your page content. When you need a heading to stand out, consider using a <strong>display heading</strong>—a larger, slightly more opinionated heading style.</p>
-      <div class="bd-example">
-        <p>You can use the mark tag to <mark>highlight</mark> text.</p>
-        <p><del>This line of text is meant to be treated as deleted text.</del></p>
-        <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
-        <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
-        <p><u>This line of text will render as underlined</u></p>
-        <p><small>This line of text is meant to be treated as fine print.</small></p>
-        <p><strong>This line rendered as bold text.</strong></p>
-        <p><em>This line rendered as italicized text.</em></p>
-      </div>
-    </c-card-body>
-  </c-card>
-  <c-card class="mb-4">
-    <c-card-header>
-      Description list alignment
-    </c-card-header>
-    <c-card-body>
-      <p>Align terms and descriptions horizontally by using our grid system’s predefined classes (or semantic mixins). For longer terms, you can optionally add a <code class="c-highlighter-rouge">.text-truncate</code> class to truncate the text with an ellipsis.</p>
-      <div class="bd-example">
-        <dl class="row">
-          <dt class="col-sm-3">Description lists</dt>
-          <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
+    </div>
+    <!--Burası yapılacak-->
 
-          <dt class="col-sm-3">Euismod</dt>
-          <dd class="col-sm-9">
-            <p>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</p>
-            <p>Donec id elit non mi porta gravida at eget metus.</p>
-          </dd>
 
-          <dt class="col-sm-3">Malesuada porta</dt>
-          <dd class="col-sm-9">Etiam porta sem malesuada magna mollis euismod.</dd>
+    <div class="add-event-card" style="margin-left: 500px">
+      <form [formGroup]="eventForm">
+        <input
+          type="text"
+          class="input"
+          formControlName="eventName"
+          placeholder="Event Name"
+          style="font-weight: bold; margin-left: 100px"
 
-          <dt class="col-sm-3 c-d-block c-text-truncate">Truncated term is truncated with <code>d-block</code></dt>
-          <dd class="col-sm-9 c-d-block c-text-truncate">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
+        /><br/>
+        <textarea
+          type="text"
+          style="
+              border: none;
+              outline: none;
+              padding: 5px;
+              margin: 5px 5px 5px 65px;
+            "
+          rows="10"
+          cols="30"
+          formControlName="explain"
+          placeholder="Event Description"
+        ></textarea
+        ><br/>
+        <input
+          type="date"
+          class="input"
+          formControlName="date"
+          placeholder="Event Date"
+        />
+        <br/>
+        <div style="margin-left: 60px; margin-top: 10px">
+          <button
+            class="submit"
+            style="
+                color: white;
+                background-color: rgb(241, 26, 10);
+                margin-left: 30px;
+              "
+          >
+            Cancel
+          </button>
+          <button
+            class="submit"
+            style="color: white; background-color: rgb(51, 17, 243)"
+            (click)="postEvent()"
+            [disabled]="eventForm.invalid"
+          >
+            <!--Düğmeleri aktifliğini kapatır-->
+            Add Event
+          </button>
+        </div>
+      </form>
+    </div>
 
-          <dt class="col-sm-3">Nesting</dt>
-          <dd class="col-sm-9">
-            <dl class="row">
-              <dt class="col-sm-4">Nested definition list</dt>
-              <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
-            </dl>
-          </dd>
-        </dl>
-      </div>
-    </c-card-body>
-  </c-card>
+    <div
+      style="
+            background-color: rgb(107, 142, 247);
+            border: none;
+            border-radius: 40px;
+          "
+    >
+      <h3 style="margin-left: 50%">Event List</h3>
+    </div>
+
+    <div *ngIf="events.length > 0" style="overflow: auto">
+      <ul style="display: flex; list-style: none">
+        <li
+          class="descipt"
+          (mouseenter)="event.showDetails = true"
+          (mouseleave)="event.showDetails = false"
+          style="margin-left: 30px; list-style: none"
+          *ngFor="let event of events; let i = index"
+        >
+              <span class="title" [attr.maxlength]="100">{{
+                event.eventName
+                }}</span>
+          <br/>
+          <div>
+            <div *ngIf="event.showDetails">
+              <strong>Date:</strong> <br/>
+              {{ event.date | date : "medium" }}
+              <strong>Description:</strong> <br/>
+              {{ event.explain }} <br/>
+
+              <div style="display: flex; margin-top: 70px">
+                <button (click)="openAddUserPanel()" class="submit">
+                  AddUser
+                </button>
+                <button class="submit" (click)="deleteEvent(event.id)">
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!--Buraya yaklaşan etkinlikler eklenecek-->
+  </div>
 </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>User</h1>
+
+
+<div mat-dialog-content>
+  <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>name</mat-label>
+      <input matInput id="name" name="name" formControlName="name" placeholder="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>lastName</mat-label>
+      <input matInput id="lastName" name="lastName" formControlName="lastName" placeholder="lastName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>email</mat-label>
+      <input matInput id="email" name="email" formControlName="email" placeholder="email">
+    </mat-form-field>
+<!--    <mat-form-field appearance="outline">-->
+<!--      <mat-label>Roles</mat-label>-->
+<!--      <input matInput id="roles" name="roles" formControlName="roles" placeholder="roles">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field appearance="outline">-->
+<!--      <mat-label>password</mat-label>-->
+<!--      <input matInput id="password"  name="password" formControlName="password"  placeholder="password">-->
+<!--    </mat-form-field>-->
+
+  </form>
+  <div mat-dialog-actions align="end">
+
+
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button type="button" style="margin-left:8px" mat-raised-button color="primary" (click)="updateUser()">{{actionBtn}}</button>
+  </div>
+</div>

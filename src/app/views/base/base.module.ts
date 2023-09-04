@@ -52,6 +52,9 @@ import { TabsComponent } from './tabs/tabs.component';
 
 // Components Routing
 import { BaseRoutingModule } from './base-routing.module';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   imports: [
@@ -83,6 +86,9 @@ import { BaseRoutingModule } from './base-routing.module';
     PopoverModule,
     TableModule,
     DocsComponentsModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
   ],
   declarations: [
     AccordionsComponent,
