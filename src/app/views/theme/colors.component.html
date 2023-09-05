@@ -1,2 +1,62 @@
+<div
+        style="
+            background-color: rgb(107, 142, 247);
+            border: none;
+            border-radius: 40px;
+          "
+>
+  <h3 style="margin-left: 50%">Up Coming Event List</h3>
+</div>
+<div *ngIf="closeEvent.length>0">
+<!--  <ul style="display: flex ; list-style: none"  >-->
+<!--    <li-->
+<!--            class="descipt"-->
+<!--            (mouseenter)="event.showDetails = true"-->
+<!--            (mouseleave)="event.showDetails = false"-->
+<!--      style="margin-left: 30px; list-style: none"-->
+<!--      *ngFor="let event of closeEvent; let i = index"-->
+<!--    >-->
+<!--      <span class="title" [attr.max.lenght]="100">-->
+<!--      {{-->
+<!--   event.Name-->
+<!--        }}-->
+<!--      </span>-->
+<!--      <br>-->
+<!--      <div>-->
+<!--        <div *ngIf="event.showDetails">-->
+<!--          <strong>Date:</strong> <br/>-->
+<!--          {{ event.date }}-->
+<!--          <strong>Description:</strong> <br/>-->
+<!--          {{ event.explain }} <br/>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </li>-->
+<!--  </ul>-->
+  <ul style="display: flex; list-style: none">
+    <li
+            class="descipt"
+            (mouseenter)="event.showDetails = true"
+            (mouseleave)="event.showDetails = false"
+            style="margin-left: 30px; list-style: none"
+            *ngFor="let event of closeEvent; let i = index"
+    >
+              <span class="title" [attr.maxlength]="100">{{
+                event.eventName
+                }}</span>
+      <br/>
+      <div>
+        <div *ngIf="event.showDetails">
+          <strong>Date:</strong> <br>
+          {{ event.date }} <br>
+          <strong>Description:</strong> <br>
+          {{ event.explain }} <br>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div *ngIf="closeEvent.length===0" style="justify-content: center">
+  <strong>Yakın zamanda event bulunmamaktadır</strong>
 
-<button type="button" class="btn btn-primary">Primary</button>
+</div>
+

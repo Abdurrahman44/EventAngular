@@ -33,28 +33,31 @@ export class TypographyComponent {
   }
 
   ngOnInit(): void {
-
     this.events.push();
+    this.users.push();
     this.loadEvents();
+    this.getAllUsers();
+
+
   }
 
-  loadEvents(): void {
+  loadEvents(): void {//it is work
     this.eventService.getAllEvents().subscribe((data) => {
       this.events = data;
     });//event
   }
-  getAllUSers(): void {
+  getAllUsers(): void {
     this.eventService.getAllUsers().subscribe((data1: any) => {
       this.users = data1;
     });
   }
 
-  deleteEvent(eventId: number): void {
+  deleteEvent(eventId: number): void {//it is work
     this.eventService.deleteEvent(eventId).subscribe(() => {
       this.loadEvents();
     });
   }
-  postEvent(): void  {
+  postEvent(): void  {//it is work
     if (this.eventForm.valid) {
       const eventData = this.eventForm.value;
       const createRequestEvent = {
@@ -68,22 +71,30 @@ export class TypographyComponent {
       });
     }
   }
-  getUpcomingEvent() {
-    this.eventService.getUpcomingEvent().subscribe((data) => {
-      this.events = data;
-    });
-  }
 
-  addUsersToEvent(eventId: number, userIds: number[]): void {
-    this.eventService.addUsersToEvent(eventId, userIds).subscribe(
-        response => {
-          console.log('Users added to event:', response);
-          // Gerekirse burada kullanıcıya geri bildirim verebilirsiniz.
-        },
-        error => {
-          console.error('Error adding users:', error);
-          // Gerekirse burada hata durumunda kullanıcıya geri bildirim verebilirsiniz.
-        }
-    );
+  addUsersToEvent(): void {
+    console.log("gönderildi")
+    // this.eventService.addUsersToEvent().subscribe(
+    //     response => {
+    //       console.log('Users added to event:', response);
+    //       // Gerekirse burada kullanıcıya geri bildirim verebilirsiniz.
+    //     },
+    //     error => {
+    //       console.error('Error adding users:', error);
+    //       // Gerekirse burada hata durumunda kullanıcıya geri bildirim verebilirsiniz.
+    //     }
+    // );
   }
+  // addUsersToEvent(eventId: number, userIds: number[]): void {
+  //   this.eventService.addUsersToEvent(eventId, userIds).subscribe(
+  //       response => {
+  //         console.log('Users added to event:', response);
+  //         // Gerekirse burada kullanıcıya geri bildirim verebilirsiniz.
+  //       },
+  //       error => {
+  //         console.error('Error adding users:', error);
+  //         // Gerekirse burada hata durumunda kullanıcıya geri bildirim verebilirsiniz.
+  //       }
+  //   );
+  // }
 }

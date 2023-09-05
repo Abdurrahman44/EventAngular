@@ -36,6 +36,7 @@ export class EventComponent {
 
     this.events.push();
     this.loadEvents();
+    this.getAllUsers();
   }
 
   loadEvents(): void {
@@ -43,7 +44,7 @@ export class EventComponent {
       this.events = data;
     });//event
   }
-  getAllUSers(): void {
+  getAllUsers(): void {
     this.eventService.getAllUsers().subscribe((data1: any) => {
       this.users = data1;
     });
@@ -63,11 +64,11 @@ export class EventComponent {
       });
     }
   }
-  getUpcomingEvent() {
-    this.eventService.getUpcomingEvent().subscribe((data) => {
-      this.events = data;
-    });
-  }
+  // getUpcomingEvent() {
+  //   this.eventService.getUpcomingEvent().subscribe((data) => {
+  //     this.events = data;
+  //   });
+  // }
 
   addUsersToEvent(eventId: number, userIds: number[]): void {
     this.eventService.addUsersToEvent(eventId, userIds).subscribe(
