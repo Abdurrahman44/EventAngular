@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EventService} from "./event.service";
+import {cibLanyrd} from "@coreui/icons";
+
 
 @Component({
   templateUrl: 'typography.component.html',
   styleUrls: ['./event.component.css']
 })
 export class TypographyComponent {
+  eventId:any;
   events: any[] = [];
   users: any[] = [];
+  seclectId:any[]=[];
   eventForm: FormGroup;
   usersForm: FormGroup;
   constructor(
@@ -21,14 +25,31 @@ export class TypographyComponent {
       explain: '',
     });
     this.usersForm = this.formBuilder.group({
+      id:['', [Validators.required]],
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
+
     });
   }
+  toggleUserSelection(user:any ) {
+    const index = this.users.indexOf(user.id);
 
-//burada kişiler paneli açılmak amacıyla kullanılıyor olacaktır.
+    if (index === -1) {
+      // Kullanıcı daha önce seçilmemişse, seçim listesine ekleyin
+      this.seclectId.push(user.id);//seçilen listeye ekleme
+    } else {
+      // Kullanıcı zaten seçilmişse, seçim listesinden çıkarın
+      this.seclectId.splice(index, 1);
+    }
+
+  }
+
+//burada kişiler paneli açıl    mak amacıyla kullanılıyor olacaktır.
   isAddUserPanelOpen: boolean = false;
-  openAddUserPanel() {
+  openAddUserPanel(eventId:number) {
+
+    this.eventId=eventId;
+    // console.log(eventId)
     this.isAddUserPanelOpen = !this.isAddUserPanelOpen;
   }
 
@@ -72,29 +93,37 @@ export class TypographyComponent {
     }
   }
 
-  addUsersToEvent(): void {
-    console.log("gönderildi")
-    // this.eventService.addUsersToEvent().subscribe(
-    //     response => {
-    //       console.log('Users added to event:', response);
-    //       // Gerekirse burada kullanıcıya geri bildirim verebilirsiniz.
-    //     },
-    //     error => {
-    //       console.error('Error adding users:', error);
-    //       // Gerekirse burada hata durumunda kullanıcıya geri bildirim verebilirsiniz.
-    //     }
-    // );
-  }
-  // addUsersToEvent(eventId: number, userIds: number[]): void {
-  //   this.eventService.addUsersToEvent(eventId, userIds).subscribe(
-  //       response => {
-  //         console.log('Users added to event:', response);
-  //         // Gerekirse burada kullanıcıya geri bildirim verebilirsiniz.
-  //       },
-  //       error => {
-  //         console.error('Error adding users:', error);
-  //         // Gerekirse burada hata durumunda kullanıcıya geri bildirim verebilirsiniz.
-  //       }
-  //   );
+  // addUsersToEvent(): void {
+  //   console.log("gönderildi")
+  //   // this.eventService.addUsersToEvent().subscribe(
+  //   //     response => {
+  //   //       console.log('Users added to event:', response);
+  //   //       // Gerekirse burada kullanıcıya geri bildirim verebilirsiniz.
+  //   //     },
+  //   //     error => {
+  //   //       console.error('Error adding users:', error);
+  //   //       // Gerekirse burada hata durumunda kullanıcıya geri bildirim verebilirsiniz.
+  //   //     }
+  //   // );
   // }
+  addUsersToEvent(eventId: any, userIds: number[]): void {
+    this.seclectId=[];
+
+    console.log("event id :"+eventId);
+    console.log(userIds);
+
+    this.eventService.addUsersToEvent(eventId, userIds).subscribe(
+        response => {
+          console.log('Users added to event:', response);
+          this.isAddUserPanelOpen=false;
+          // Gerekirse burada kullanıcıya geri bildirim verebilirsiniz.
+        },
+        error => {
+          console.error('Error adding users:', error);
+          // Gerekirse burada hata durumunda kullanıcıya geri bildirim verebilirsiniz.
+        }
+    );
+  }
+
+
 }

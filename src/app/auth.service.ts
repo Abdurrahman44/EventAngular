@@ -22,10 +22,10 @@ export class AuthService {
   {
     return this.loginService.postLogin(data).subscribe(
       (response:any)=>{
-        localStorage.setItem('user_auth',response.token);
         this._isLoggedIn$.next(true);
 
         if(response.token){
+            localStorage.setItem('user_auth',response.token);
           this.router.navigate(['./dashboard'], {
               queryParams: {
                 data: null,

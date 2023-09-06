@@ -62,6 +62,7 @@ export class AccordionsComponent {
       next: (res) => {
         alert("Delete successful");
         this.dialog.getAllUsers();
+        this.getAllUser();
       }
 
 

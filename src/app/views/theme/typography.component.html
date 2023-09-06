@@ -18,24 +18,34 @@
         <form [formGroup]="usersForm">
           <div *ngIf="users.length > 0">
             <ul style="list-style: none">
-              <li  *ngFor="let user of users; let i = index">
+              <hr style="margin-top: -5px">
+              <li *ngFor="let user of users; let i = index">
                 <div style="display: flex; flex-direction: row">
-                      <span
-                        style="padding-top: 10px; color: rgb(0, 0, 0)"
-                        [attr.maxlength]="30"
-                      >{{ user.name }} {{ user.lastName }}</span
-                      >
-                  <input type="checkbox" [id]="'user'+user.id" />
+              <span
+                      style="padding-top: 10px; color: rgb(0, 0, 0)"
+                      [attr.maxlength]="30"
+              >{{ user.name }} {{ user.lastName }}</span>
+                  <input
+                          type="checkbox"
+                          [id]="'user' + user.id"
+                          (click)="toggleUserSelection(user)"
+                          [checked]="users.includes(user.id)"
+                          style="margin-top: 15px;margin-left: 15px"
+                  />
+                  <!-- Assign a unique ID to each checkbox -->
                 </div>
+                <hr>
               </li>
             </ul>
           </div>
-          <div style="margin-left: 150px; display: inline-block">
-            <input type="submit" class="submit" value="Gönder" (click)="addUsersToEvent()"/>
+          <div style="margin-left: 125px; display: inline-block">
+
+            <input type="submit" class="submit" value="Gönder"  (click)="addUsersToEvent(eventId,seclectId)"/>
           </div>
         </form>
       </div>
     </div>
+
     <!--Burası yapılacak-->
 
 
@@ -124,8 +134,8 @@
               <strong>Description:</strong> <br/>
               {{ event.explain }} <br/>
 
-              <div style="display: flex; margin-top: 70px">
-                <button (click)="openAddUserPanel()" class="submit">
+              <div style="display: flex; margin-top: 10px">
+                <button (click)="openAddUserPanel(event.id)" class="submit">
                   AddUser
                 </button>
                 <button class="submit" (click)="deleteEvent(event.id)">
