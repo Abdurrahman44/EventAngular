@@ -46,11 +46,11 @@ export class DialogComponent implements OnInit {
 test(){
     console.log(this.userForm)
 }
-  updateUser() {//burasıda çalışıyor
+  updateUser() {//it is work
 
     const userData = this.userForm.value;
-    console.log(userData)
-    console.log(userData)
+   /// console.log(userData)
+   // console.log(userData)
     if (this.userForm.valid) {
       this.dialog.updateUser(userData).subscribe(
         (res:any) => {

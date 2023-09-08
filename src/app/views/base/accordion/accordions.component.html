@@ -1,9 +1,9 @@
 
 
-<div style="border-style: solid">
-  <div style="margin-top:10px">
+<div style="border-style:  solid;border-width:1px">
+  <div >
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+      <table class="table table-striped table-hover" mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
 
         <!-- ID -->
         <ng-container matColumnDef="id">

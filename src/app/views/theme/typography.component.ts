@@ -93,19 +93,7 @@ export class TypographyComponent {
     }
   }
 
-  // addUsersToEvent(): void {
-  //   console.log("gönderildi")
-  //   // this.eventService.addUsersToEvent().subscribe(
-  //   //     response => {
-  //   //       console.log('Users added to event:', response);
-  //   //       // Gerekirse burada kullanıcıya geri bildirim verebilirsiniz.
-  //   //     },
-  //   //     error => {
-  //   //       console.error('Error adding users:', error);
-  //   //       // Gerekirse burada hata durumunda kullanıcıya geri bildirim verebilirsiniz.
-  //   //     }
-  //   // );
-  // }
+
   addUsersToEvent(eventId: any, userIds: number[]): void {
     this.seclectId=[];
 
